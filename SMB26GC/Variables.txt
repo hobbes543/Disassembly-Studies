@@ -1,0 +1,29 @@
+VRAM Variables ($8000-$9FFF):
+
+External RAM Variables ($A000-$BFFF):
+	nSCY 	= $A240		Scroll Y for next Vblank
+	nSCX	= $A241		Scroll X for next Vblank
+	nBGP	= $A27E		Background Palette for next Vblank
+	nOBP0	= $A27F		Object Palette 0 for next Vblank
+	nOBP1 	= $A280		Object Palette 1 for next Vblank
+	SPStart	= $A8FF		Start location for stack
+
+WRAM0 Variables ($C000-$CFFF):
+
+WRAM1 Variables ($D000-$DFFF):
+	
+I/O Variables ($FF00-$FF7F):
+	SB		= $FF01		Serial Transfer Data
+	SC		= $FF02		Serial Transfer Control
+	LCDC	= $FF40		LCD Control
+	STAT	= $FF41		LCDC Status
+	SCY 	= $FF42		Scroll Y
+	SCX 	= $FF43		Scroll X
+	LY		= $FF44		LCDC Y Coordinate
+	BGP		= $FF47		Background Palette
+	OBP0	= $FF48		Object Palette 0
+	OBP1	= $FF49		Object Palette 1
+	IF 		= $FF0F		Iterrupt Flag
+	IE 		= $FFFF		Interrupt Enable
+
+HRAM Variables: ($FF80-$FFFE) :
