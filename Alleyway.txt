@@ -27,152 +27,191 @@ Interrupt Enable Register {$FFFF}
 	
 	$FFFF = IE		- Interrupt Enable {0,0,0,Joypad,Serial,Timer,LCD,VBlank}
 	
-RST1:
+RST1:																		Reset Vector
 		0000 	C3 50 01 												JP game_Start
 		
-		0003	FF FF FF FF FF  
+		0003	FF FF FF FF FF  										Blank Space
 
 RST2:	
-		0008 	FF FF FF FF FF FF FF FF
+		0008 	FF FF FF FF FF FF FF FF									Blank Space
 		
 RST3:		
-		0010 	FF FF FF FF FF FF FF FF  
+		0010 	FF FF FF FF FF FF FF FF  								Blank Space
 	
 RST4:		
-		0018 	FF FF FF FF FF FF FF FF
+		0018 	FF FF FF FF FF FF FF FF									Blank Space
 	
 RST5:	
-		0020 	FF FF FF FF FF FF FF FF  
+		0020 	FF FF FF FF FF FF FF FF  								Blank Space
 	
 RST6:	
-		0028 	FF FF FF FF FF FF FF FF
+		0028 	FF FF FF FF FF FF FF FF									Blank Space
 
 RST7:
-		0030 	FF FF FF FF FF FF FF FF  
+		0030 	FF FF FF FF FF FF FF FF  								Blank Space
 
 RST8:		
-		0038	FF FF FF FF FF FF FF FF
+		0038	FF FF FF FF FF FF FF FF									Blank Space
 
-vecVBlank:		
+vecVBlank:																	Vector for VBlank interrupt
 		0040 	C3 EF 01 												JP vBlankInterrupt
 		
-		0043	FF FF FF FF FF 
+		0043	FF FF FF FF FF 											Blank Space
 
-vecLCDStat:		
+vecLCDStat:																	Vector for LCD interrupt
 		0048	C3 60 02 												JP lCDStatInterrupt
 		
-		004B	FF FF FF FF FF
+		004B	FF FF FF FF FF											Blank Space
 		
-vecTimer:		
+vecTimer:																	Vector for Timer interrupt
 		0050 	C3 53 04 												JP timerInterrupt
 		
-		0053	FF FF FF FF FF 
+		0053	FF FF FF FF FF 											Blank Space
 
-vecSerial:		
+vecSerial:																	Vector for Serial interrupt
 		0058	C3 72 02 												JP serialInterrupt
 		
-		005B	FF FF FF FF FF
+		005B	FF FF FF FF FF											Blank Space
 		
-vecJoypad:		
-		0060 	D9 														RETI
+vecJoypad:																	Vector for Joypad interrupt
+		0060 	D9 														RETI					- Return and enable interrupts
 		
-		0061	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
-		0070 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
-		0080 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
-		0090 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
-		00A0 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
-		00B0 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
-		00C0 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
-		00D0 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
-		00E0 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
-		00F0 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+		0061	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF			Blank Space
+		0070 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF			Blank Space
+		0080 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF			Blank Space
+		0090 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF         Blank Space
+		00A0 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF         Blank Space
+		00B0 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF         Blank Space
+		00C0 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF         Blank Space
+		00D0 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF         Blank Space
+		00E0 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF         Blank Space
+		00F0 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF         Blank Space
 		
 Header																		Entry point after boot ROM runs
-		0100 	00 														NOP					- No Op
-		0101	C3 50 01 												JP Game_Start		- Jump to Program Start
-		0104	CE ED 66 66 CC 0D 00 0B 03 73 00 83 00 0C 00 0D			data				- {$0104-$0133} Bitmap image of Nintendo logo
-		0114 	00 08 11 1F 88 89 00 0E DC CC 6E E6 DD DD D9 99			data	
-		0124 	BB BB 67 63 6E 0E EC CC DD DC 99 9F BB B9 33 3E			data	
-		0134 	41 4C 4C 45 59 20 57 41 59 00 00 00 00 00 00 00			data				- ALLEYWAY
-		0144 	00 00 													data				- New License Code : 00
-		0146	00 														data				- SGB Flag: 0
-		0147	00 														data				- Cartridge Type: ROM Only
-		0148	00 														data				- ROM Size: 32 KiB
-		0149	00 														data				- RAM Size: No RAM
-		014A	00 														data				- Destination Code: Japan
-		014B	01 														data				- Old License Code: Nintendo
-		014C	00 														data				- Mask ROM version: 0
-		014D	5E 														data				- Header Checksum
-		014E	D1 9E													data				- Global Checksum
+		0100 	00 														NOP						- No Op
+		0101	C3 50 01 												JP Game_Start			- Jump to Program Start
+		0104	CE ED 66 66 CC 0D 00 0B 03 73 00 83 00 0C 00 0D			data					- {$0104-$0133} Bitmap image of Nintendo logo
+		0114 	00 08 11 1F 88 89 00 0E DC CC 6E E6 DD DD D9 99			data		
+		0124 	BB BB 67 63 6E 0E EC CC DD DC 99 9F BB B9 33 3E			data		
+		0134 	41 4C 4C 45 59 20 57 41 59 00 00 00 00 00 00 00			data					- ALLEYWAY
+		0144 	00 00 													data					- New License Code : 00
+		0146	00 														data					- SGB Flag: 0
+		0147	00 														data					- Cartridge Type: ROM Only
+		0148	00 														data					- ROM Size: 32 KiB
+		0149	00 														data					- RAM Size: No RAM
+		014A	00 														data					- Destination Code: Japan
+		014B	01 														data					- Old License Code: Nintendo
+		014C	00 														data					- Mask ROM version: 0
+		014D	5E 														data					- Header Checksum
+		014E	D1 9E													data					- Global Checksum
 			
-game_Start:			
-		0150 	F0 44 													LDH A,(LY)			- A = (LY)
-		0152	FE 91 													CP 0xh91			- Compare A to 0xh91, set flags as necessary
-		0154	38 FA 													JR C,Game_Start		- Jump if Carry is set to Game_Start, Loop until LY = 0xh91
+game_Start:																	Entry point for the game
+		0150 	F0 44 													LDH A,(LY)				- A = (LY)
+		0152	FE 91 													CP 0xh91				- Compare A to 0xh91, set flags as necessary
+		0154	38 FA 													JR C,Game_Start			- Jump if Carry is set to Game_Start, Loop until LY = 0xh91
+			
+		0156	3E 00 													LD A,0xh00				- A = 0xh00
+		0158	E0 40 													LDH LCDC,A				- LCDC = 0xb0000 0000 {Off, $9800-$9BFF, Off, $8800-$97FF, $9800-$9BFF, 8x8, Off, Off}
+		015A	31 FF CF 												LD SP,SPStart			- Set SP start position.
+		015D	CD 33 02												CALL pauseInterrupt		- Call Function
+			
+		0160 	21 FF 9F 												LD HL,0xh9FFF			- HL = 0xh9FFF, Used as memory addresses for following routine
+		0163	0E 1F 													LD C,0xh1F				- C = 0xh1F
+		0165	AF 														XOR A					- A = 0xh00
+		0166	06 00 													LD B,0xh00				- B = 0xh00
+
+initVRAM:																	Sets all values in memory range $8000 - $9FFF (VRAM) to 0xh00
+		0168	32 														LD (HL-),A				- Set address pointed to in HL equal to A and then decrement HL
+		0169	05 														DEC B					- B = B - 1
+		016A	20 FC 													JR NZ,initVRAM			- Loop until B = 0xh00
+			
+		016C	0D 														DEC C					- C = C - 1
+		016D	20 F9 													JR NZ,initVRAM			- Loop until C = 0xh00
+			
+		016F	21 FF DF												LD HL,0xhDFFF			- HL = 0xhDFFF, Used as memory addresses for following routine
+		0172 	0E 3F 													LD C,0xh3F				- C = 0xh3F
+		0174	AF 														XOR A					- A = 0xh00
+		0175	06 00 													LD B,0xh00				- B = 0xh00
 		
-		0156	3E 00 													LD A,0xh00			- A = 0xh00
-		0158	E0 40 													LDH LCDC,A			- LCDC = 0xb0000 0000 {Off, $9800-$9BFF, Off, $8800-$97FF, $9800-$9BFF, 8x8, Off, Off}
-		015A	31 FF CF 												LD SP,SPStart		- Set SP start position.
-		015D	CD 33 02												CALL pauseInterrupt	- Call Function
+initRAM:																	Sets all values in memory range $A000 - $DFFF (RAM, WRAM) to 0xh00		
+		0177	32 														LD (HL-),A				- Set address pointed to in HL equal to A and then decrement HL
+		0178	05 														DEC B					- B = B - 1
+		0179	20 FC 													JR NZ,initRAM			- Loop until B = 0xh00
+			
+		017B	0D 														DEC C					- C = C - 1
+		017C	20 F9 													JR NZ,initRAM			- Loop until C = 0xh00
+			
+		017E	21 FE FF												LD HL,0xhFFFE			- HL = 0xhFFFE, Used as memory addresses for following routine
+		0181 	06 7F 													LD B,0xh7F				- B = 0xh7F
+
+initHRAM:																	Sets all values in memory range $FF80 - $FFFE (HRAM) to 0xh00
+		0183	32 														LD (HL-),A				- Set address pointed to in HL equal to A and then decrement HL
+		0184	05 														DEC B					- B = B - 1
+		0185	20 FC 													JR NZ,initHRAM			- Loop until B = 0xh00
+			
+		0187	21 FF FE 												LD HL,0xhFEFF			- HL = 0xhFEFF, Used as memory addresses for following routine
+		018A	06 FF 													LD B,0xhFF				- B = 0xhFF
+
+initOAM:																	Sets all values in memory range $FE00 - $FEFF (OAM) to 0xh00
+		018C	32 														LD (HL-),A				- Set address pointed to in HL equal to A and then decrement HL
+		018D	05 														DEC B					- B = B - 1
+		018E	20 FC													JR NZ,initOAM			- Loop until B = 0xh00
 		
-		0160 	21 FF 9F 
-		0163	0E 1F 
-		0165	AF 
-		0166	06 00 
-		0168	32 
-		0169	05 
-		016A	20 FC 
+		0190 	CD 81 03 												CALL loadGraphicsStart	- Call function
 		
-		016C	0D 
-		016D	20 F9 
+		0193	CD 58 03 												CALL blockMem01			- Call function
 		
-		016F	21 FF DF
-		0172 	0E 3F 
-		0174	AF 
-		0175	06 00 
-		0177	32 
-		0178	05 
-		0179	20 FC 
+		0196	CD 5D 03 												CALL blockMem02			- Call function
 		
-		017B	0D 
-		017C	20 F9 
-		
-		017E	21 FE FF
-		0181 	06 7F 
-		0183	32 
-		0184	05 
-		0185	20 FC 
-		
-		0187	21 FF FE 
-		018A	06 FF 
-		018C	32 
-		018D	05 
-		018E	20 FC
-		
-		0190 	CD 81 03 
-		
-		0193	CD 58 03 
-		
-		0196	CD 5D 03 
-		
-		0199	0E 80 
-		019B	06 0C 
-		019D	21 B5 03
-		01A0 	2A 
-		01A1	E2 
-		01A2	0C 
-		01A3	05 
-		01A4	20 FA 
+		0199	0E 80 													LD C,0xh80				- C = 0xh80
+		019B	06 0C 													LD B,0xh0C				- B = 0xh0C
+		019D	21 B5 03												LD HL,0xh03B5			- HL = 0xh03B5
+
+-:		
+		01A0 	2A 														LD A,(HL+)				- Loading value stored at address pointed to in HL into A, then incrementing HL
+		01A1	E2 														LD (C),A				- Store 
+		01A2	0C 														INC C
+		01A3	05 														DEC B
+		01A4	20 FA 													JR NZ,-
 		
 		01A6	3E 01 
 		01A8	E0 0F 
 		01AA	E0 9D 
 		01AC	3E 40 
 		01AE	E0 41
-		01B0 	AF E0 42 E0 43 3E 00 E0 40 3E E4 E0 47 E0 48 E0
-		01C0 	49 3E FF E0 8C 3E 00 E0 45 3E 00 E0 07 3E 00 E0
-		01D0 	06 3E 20 E0 9B AF E0 0F AF E0 9E E0 9F E0 A4 E0
-		01E0 	AA E0 AB 3E 83 E0 9C E0 40 CD 2D 02 C3 11 05 
+		01B0 	AF 
+		01B1	E0 42 
+		01B3	E0 43 
+		01B5	3E 00 
+		01B7	E0 40 
+		01B9	3E E4 
+		01BB	E0 47 
+		01BD	E0 48 
+		01BF	E0 49
+		01C1 	3E FF 
+		01C3	E0 8C 
+		01C5	3E 00 
+		01C7	E0 45 
+		01C9	3E 00 
+		01CB	E0 07 
+		01CD	3E 00 
+		01CF	E0 06
+		01D1 	3E 20 
+		01D3	E0 9B 
+		01D5	AF 
+		01D6	E0 0F 
+		01D8	AF 
+		01D9	E0 9E 
+		01DB	E0 9F 
+		01DD	E0 A4 
+		01DF	E0 AA
+		01E1 	E0 AB 
+		01E3	3E 83 
+		01E5	E0 9C 
+		01E7	E0 40 
+		01E9	CD 2D 02 
+		
+		01ED	C3 11 05 
 
 vBlankInterrupt:		
 		01EF	F5														PUSH AF
@@ -188,13 +227,13 @@ vBlankInterrupt:
 		0220 	D9 3E 00 E0 A0 76 F0 A0 FE 00 28 F9 C9 F0 9D E0
 		0230 	FF FB C9 
 
-pauseInterrupt:		
-		0233	F0 FF 													LDH A,(IE)			- A = (IE)
-		0235	E0 9D 													LDH pIF,A			- pIF = A Storing previous Interrupt Flags 
-		0237	3E 00 													LD A,0xh00			- A = 0xh00
-		0239	E0 FF 													LDH IE,A			- IE = 0xb0000 0000, Interrupts disabled
-		023B	F3 														DI					- Clears IME Flags IF = 0xb0000 0000
-		023C	C9 														RET
+pauseInterrupt:																Stores then clears interrupt flags, disables interrupts
+		0233	F0 FF 													LDH A,(IE)				- A = (IE)
+		0235	E0 9D 													LDH $FF9D,A				- $FF9D = A, Storing previous Interrupt Flags 
+		0237	3E 00 													LD A,0xh00				- A = 0xh00
+		0239	E0 FF 													LDH IE,A				- IE = 0xb0000 0000, Interrupts disabled
+		023B	F3 														DI						- Clears IME Flags IF = 0xb0000 0000
+		023C	C9 														RET						- Return to address at top of stack, End of Function
 		
 		023D	F0 A3 FE
 		0240 	00 C8 18 DD F0 9C E6 7F F6 80 E0 9C E0 40 C9 F0
@@ -219,18 +258,78 @@ serialInterrupt:
 		0320 	28 19 F0 95 47 2A 12 13 05 20 FA D1 E5 21 20 00
 		0330 	19 E5 D1 E1 D5 0D 20 EA D1 18 D1 F0 95 47 7E 12
 		0340 	13 05 20 FA D1 E5 21 20 00 19 E5 D1 E1 D5 0D 20
-		0350 	EA D1 23 18 B7 C1 F1 C9 21 00 98 18 03 21 00 9C
-		0360 	01 00 04 3E FF 22 0B 78 B1 20 F8 C9 06 A0 3E 00
+		0350 	EA D1 23 18 B7 C1 F1 C9 
+		
+blockMem01:																	Fills memory locations $9800 - $9BFF with value 0xhFF
+		0358	21 00 98 												LD HL,0xh9800			- HL = 0xh9800, Value used as address pointer. Initial address $9800
+		035B	18 03 													JR +					- Jump to +
+
+blockMem02:																	Fills memory locations $9C00 - $9FFF with value 0xhFF
+		035D	21 00 9C												LD HL,0xh9C00			- HL = 0xh9C00, Value used as address pointer. Initial address $9C00
+
++:		
+		0360 	01 00 04 												LD BC,0xh0400			- BC = 0xh0400
+		0363	3E FF 													LD A,0xhFF				- A = 0xhFF
+		0365	22 														LD (HL+),A				- Storing A at address pointed to in HL, then incrementing HL
+		0366	0B 														DEC BC					- BC = BC - 1
+		0367	78 														LD A,B					- A = B
+		0368	B1 														OR C					- A = bitwise OR of A and C, A will only equal 0xh00 if B and C both equal 0xh00 
+		0369	20 F8                                                   JR NZ,+					- Loop until BC = 0xh0000
+		
+		036B	C9 														RET						- End of Function
+		
+		036C	06 A0 3E 00
 		0370 	21 00 C8 22 05 20 FC C9 06 18 3E 00 21 88 C8 18
-		0380 	F2 21 75 5B 11 00 90 01 00 08 2A 12 13 0B 78 B1
-		0390 	20 F8 21 75 53 11 00 88 01 00 08 2A 12 13 0B 78
-		03A0 	B1 20 F8 21 75 4B 11 00 80 01 00 08 2A 12 13 0B
-		03B0 	78 B1 20 F8 C9 F3 3E C8 E0 46 3E 28 3D 20 FD FB
+		0380 	F2 
+
+loadGraphicsStart:															Loads graphic data in to VRAM		
+		0381	21 75 5B 												LD HL,0xh5B75			- HL = 0xh5B75, Value used as address pointer. Initial address $5B75
+		0384	11 00 90 												LD DE,0xh9000			- DE = 0xh9000, Value used as address pointer. Initial address $9000
+		0387	01 00 08 												LD BC,0xh0800			- BC = 0xh0800 - Loop Counter
+	
+-:	
+		038A	2A 														LD A,(HL+)				- Loading value stored at address pointed to in HL, then incrementing HL
+		038B	12 														LD (DE),A				- Store value in A at address pointed to by DE.
+		038C	13 														INC DE					- DE = DE + 1
+		038D	0B 														DEC BC					- BC = BC - 1
+		038E	78 														LD A,B					- A = B			
+		038F	B1														OR C					- A = bitwise OR of A and C, A will only equal 0xh00 if B and C both equal 0xh00
+		0390 	20 F8 													JR NZ,-					- Loop until BC = 0xh0000
+		
+		0392	21 75 53 												LD HL,0xh5375			- HL = 0xh5375, Value used as address pointer. Initial address $5375
+		0395	11 00 88                                                LD DE,0xh8800			- DE = 0xh8800, Value used as address pointer. Initial address $8800
+		0398	01 00 08                                                LD BC,0xh0800			- BC = 0xh0800 - Loop Counter
+		                                                                
+-:		                                                                
+		039B	2A                                                      LD A,(HL+)				- Loading value stored at address pointed to in HL, then incrementing HL
+		039C	12                                                      LD (DE),A				- Store value in A at address pointed to by DE.
+		039D	13                                                      INC DE					- DE = DE + 1
+		039E	0B                                                      DEC BC					- BC = BC - 1
+		039F	78                                                      LD A,B					- A = B			
+		03A0 	B1                                                      OR C					- A = bitwise OR of A and C, A will only equal 0xh00 if B and C both equal 0xh00
+		03A1	20 F8                                                   JR NZ,-					- Loop until BC = 0xh0000
+		
+		03A2	21 75 4B 												LD HL,0xh4B75			- HL = 0xh4B75, Value used as address pointer. Initial address $4B75
+		03A5	11 00 80                                                LD DE,0xh8000			- DE = 0xh8000, Value used as address pointer. Initial address $8000
+		03A8	01 00 08                                                LD BC,0xh0800			- BC = 0xh0800 - Loop Counter
+		                                                                
+-:		                                                                
+		03AB	2A 					                                    LD A,(HL+)				- Loading value stored at address pointed to in HL, then incrementing HL
+		03AC	12                                                      LD (DE),A				- Store value in A at address pointed to by DE.
+		03AD	13                                                      INC DE					- DE = DE + 1
+		03AE	0B                                                      DEC BC					- BC = BC - 1
+		03B0 	78                                                      LD A,B					- A = B			
+		03B1	B1                                                      OR C					- A = bitwise OR of A and C, A will only equal 0xh00 if B and C both equal 0xh00
+		03B2	20 F8                                                   JR NZ,-					- Loop until BC = 0xh0000
+		
+		03B4	C9 														RET						- End of Function
+		
+		03B5	F3 3E C8 E0 46 3E 28 3D 20 FD FB
 		03C0 	C9 
 
 getInput:		
 		03C1	3E 20 													LD A,0xh20
-		03C3	E0 00 													LDH JPAD,A	- Joypad = 0xb0010 0000
+		03C3	E0 00 													LDH JPAD,A				- Joypad = 0xb0010 0000
 		03C5	F0 00 													LDH A,JPAD
 		03C7	F0 00 													LDH A,JPAD 
 		03C9	F0 00 													LDH A,JPAD 
@@ -1404,391 +1503,400 @@ timerInterrupt:
 		4B40 	00 08 08 1F 20 00 00 FF 00 00 08 FF 00 08 00 FF
 		4B50 	00 08 08 FF 00 00 00 21 00 00 08 22 00 08 00 23
 		4B60 	00 08 08 24 00 00 00 21 00 00 08 22 00 08 00 25
-		4B70 	00 08 08 26 00 68 7F A8 A8 FF E8 E8 FF 7F 7F 00
-		4B80 	00 00 00 00 00 00 FF 00 00 FF 00 00 FF FF FF 00
-		4B90 	00 00 00 00 00 6F 7F AF AF F8 E8 E8 FF 7F 7F 00
-		4BA0 	00 00 00 00 00 FF FF FF FF 00 00 00 FF FF FF 00
-		4BB0 	00 00 00 00 00 3C FF 3C 3C 81 00 00 FF FF FF 00
-		4BC0 	00 00 00 00 00 60 60 B0 B0 F0 F0 60 60 00 00 00
-		4BD0 	00 00 00 00 00 00 00 04 07 10 1F 06 02 1F 01 0F
-		4BE0 	0F 07 00 01 03 00 00 00 E0 00 F0 F0 50 F8 58 F0
-		4BF0 	30 C0 00 00 E0 03 06 0B 06 0D 0D 1F 1F 0F 0F 06
-		4C00 	3E 00 06 00 00 80 70 80 70 10 F0 F0 F0 F8 F8 38
-		4C10 	3C 00 18 00 30 02 03 08 0F 03 01 0F 00 07 07 03
-		4C20 	00 01 01 02 03 00 F0 00 F8 78 28 FC AC F8 98 E0
-		4C30 	00 A0 70 40 F8 0E 03 0F 03 03 07 03 03 01 01 00
-		4C40 	03 00 00 00 00 40 F8 B0 88 F8 C8 F8 F8 F8 F8 70
-		4C50 	F0 30 38 00 70 00 00 04 07 10 1F 06 02 1F 01 0F
-		4C60 	0F 07 00 00 03 00 00 00 E0 00 F0 F0 50 F8 58 F0
-		4C70 	30 C0 00 80 F0 01 07 09 07 0E 06 07 07 07 07 03
-		4C80 	03 01 01 00 03 60 98 60 98 C0 F0 F8 FC F8 FC F0
-		4C90 	F8 C0 C8 00 C0 00 00 04 07 10 1F 06 02 1F 01 0F
-		4CA0 	0F 07 00 03 02 00 00 00 E0 00 F0 F0 50 F8 58 F0
-		4CB0 	30 C0 00 C0 60 04 0F 04 1F 3B 0B 3F 0F 0F 0F 1F
-		4CC0 	1F 1C 1C 00 3C 80 F8 80 FC 7C 70 FC F0 F0 F0 F8
-		4CD0 	F8 38 38 00 3C 04 07 10 1F 06 02 1F 01 0F 0F 07
-		4CE0 	00 05 07 09 0F 00 E0 00 F0 F0 50 F8 58 F0 30 80
-		4CF0 	FC 10 FE 0C F2 0E 4E 3F 7F 3F 7F 07 27 01 01 00
-		4D00 	00 00 00 00 00 FC F0 F0 F0 F0 F0 E0 E0 F0 F8 F0
-		4D10 	F8 00 10 00 10 04 07 10 1C 06 02 1C 00 0F 0F 07
-		4D20 	00 05 07 09 0F 00 00 00 00 00 00 06 01 18 00 16
-		4D30 	20 28 34 17 1E 00 00 06 09 10 24 00 40 00 80 48
-		4D40 	80 A4 C8 5D 66 3F 3B 05 04 02 02 02 02 00 02 02
-		4D50 	00 06 07 0A 51 01 02 00 08 00 00 04 08 01 06 00
-		4D60 	01 00 00 00 00 00 01 00 00 00 00 00 01 00 00 00
-		4D70 	01 00 02 08 B0 06 07 0A 0A 0F 0E 0E 0F 07 07 00
-		4D80 	00 00 00 00 00 F9 FF FF FF 3F 3E 7F 78 FF F8 7F
-		4D90 	70 DF D0 DF D0 FF FF FF FF FF 3F FF 0F FF 07 FF
-		4DA0 	03 FF 03 FF 02 FF FF F0 30 F8 18 FC 0C FE 06 FF
-		4DB0 	01 FF 00 FF 00 FF FE F7 F6 FF FE FF FC 3F 3C FF
-		4DC0 	F0 FF 00 FF 00 FF F0 FF 30 FF 18 FF 0C FF 06 FF
-		4DD0 	01 FF 00 FF 00 FF 02 FF 02 FF 02 FF 02 FF 06 FF
-		4DE0 	FC FF 00 FF 00 00 00 00 00 00 00 00 00 00 00 00
-		4DF0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4E00 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4E10 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4E20 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4E30 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4E40 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4E50 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4E60 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4E70 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4E80 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4E90 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4EA0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4EB0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4EC0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4ED0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4EE0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4EF0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4F00 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4F10 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4F20 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4F30 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4F40 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4F50 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4F60 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4F70 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4F80 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4F90 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4FA0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4FB0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4FC0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4FD0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4FE0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		4FF0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5000 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5010 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5020 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5030 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5040 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5050 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5060 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5070 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5080 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5090 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		50A0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		50B0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		50C0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		50D0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		50E0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		50F0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5100 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5110 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5120 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5130 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5140 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5150 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5160 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5170 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5180 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5190 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		51A0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		51B0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		51C0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		51D0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		51E0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		51F0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5200 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5210 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5220 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5230 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5240 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5250 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5260 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5270 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5280 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5290 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		52A0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		52B0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		52C0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		52D0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		52E0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		52F0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5300 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5310 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5320 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5330 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5340 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5350 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5360 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5370 	00 00 00 00 00 00 00 3C 3C 66 66 66 66 66 66 66
-		5380 	66 3C 3C 00 00 00 00 18 18 38 38 18 18 18 18 18
-		5390 	18 3C 3C 00 00 00 00 3C 3C 66 66 0C 0C 38 38 60
-		53A0 	60 7E 7E 00 00 00 00 7E 7E 08 08 3C 3C 06 06 66
-		53B0 	66 3C 3C 00 00 00 00 1C 1C 2C 2C 4C 4C 7E 7E 0C
-		53C0 	0C 0C 0C 00 00 00 00 7C 7C 40 40 7C 7C 06 06 66
-		53D0 	66 3C 3C 00 00 00 00 3C 3C 60 60 7C 7C 66 66 66
-		53E0 	66 3C 3C 00 00 00 00 7E 7E 66 66 0C 0C 18 18 18
-		53F0 	18 18 18 00 00 00 00 3C 3C 66 66 3C 3C 66 66 66
-		5400 	66 3C 3C 00 00 00 00 3C 3C 66 66 66 66 3E 3E 06
-		5410 	06 3C 3C 00 00 00 00 18 18 3C 3C 66 66 7E 7E 66
-		5420 	66 66 66 00 00 00 00 7C 7C 66 66 7C 7C 66 66 66
-		5430 	66 7E 7E 00 00 00 00 3C 3C 66 66 60 60 60 60 66
-		5440 	66 3C 3C 00 00 00 00 7C 7C 66 66 66 66 66 66 66
-		5450 	66 7C 7C 00 00 00 00 7E 7E 60 60 7C 7C 60 60 60
-		5460 	60 7E 7E 00 00 00 00 7E 7E 60 60 7C 7C 60 60 60
-		5470 	60 60 60 00 00 00 00 3C 3C 66 66 60 60 6E 6E 66
-		5480 	66 3E 3E 00 00 00 00 66 66 66 66 7E 7E 66 66 66
-		5490 	66 66 66 00 00 00 00 3C 3C 18 18 18 18 18 18 18
-		54A0 	18 3C 3C 00 00 00 00 1E 1E 0C 0C 0C 0C 0C 0C 6C
-		54B0 	6C 38 38 00 00 00 00 66 66 6C 6C 78 78 7C 7C 6E
-		54C0 	6E 66 66 00 00 00 00 60 60 60 60 60 60 60 60 60
-		54D0 	60 7E 7E 00 00 00 00 62 62 76 76 7E 7E 6A 6A 62
-		54E0 	62 62 62 00 00 00 00 66 66 76 76 7E 7E 6E 6E 66
-		54F0 	66 66 66 00 00 00 00 3C 3C 66 66 66 66 66 66 66
-		5500 	66 3C 3C 00 00 00 00 7C 7C 66 66 66 66 7C 7C 60
-		5510 	60 60 60 00 00 00 00 3C 3C 66 66 66 66 7E 7E 64
-		5520 	64 3A 3A 00 00 00 00 7C 7C 66 66 66 66 7C 7C 66
-		5530 	66 66 66 00 00 00 00 3C 3C 66 66 38 38 0C 0C 66
-		5540 	66 3C 3C 00 00 00 00 7E 7E 18 18 18 18 18 18 18
-		5550 	18 18 18 00 00 00 00 66 66 66 66 66 66 66 66 66
-		5560 	66 3C 3C 00 00 00 00 62 62 62 62 62 62 62 62 34
-		5570 	34 18 18 00 00 00 00 62 62 6A 6A 6A 6A 6A 6A 7E
-		5580 	7E 34 34 00 00 00 00 62 62 74 74 38 38 1C 1C 2E
-		5590 	2E 46 46 00 00 00 00 62 62 76 76 3C 3C 18 18 18
-		55A0 	18 18 18 00 00 00 00 7E 7E 0C 0C 18 18 30 30 60
-		55B0 	60 7E 7E 00 00 00 00 00 00 00 00 00 00 00 00 00
-		55C0 	00 00 00 00 00 FF 00 FF 00 FF 00 FF 00 FF 00 FF
-		55D0 	00 FF 00 FF 00 00 FF 00 FF 00 FF 00 FF 00 FF 00
-		55E0 	FF 00 FF 00 FF FF FF FF FF FF FF FF FF FF FF FF
-		55F0 	FF FF FF FF FF FF 01 81 01 81 01 FF FF FF 01 81
-		5600 	01 81 01 FF FF FF 01 FF 01 FF 01 FF FF FF 01 FF
-		5610 	01 FF 01 FF FF 01 FF 01 FF 01 FF FF FF 01 FF 01
-		5620 	FF 01 FF FF FF FF 01 81 01 81 01 FF FF 00 00 00
-		5630 	00 00 00 00 00 FF 01 FF 01 FF 01 FF FF 00 00 00
-		5640 	00 00 00 00 00 01 FF 01 FF 01 FF FF FF 00 00 00
-		5650 	00 00 00 00 00 00 00 00 00 00 00 00 00 FF 01 81
-		5660 	01 81 01 FF FF 00 00 00 00 00 00 00 00 FF 01 FF
-		5670 	01 FF 01 FF FF 00 00 00 00 00 00 00 00 01 FF 01
-		5680 	FF 01 FF FF FF 00 00 20 3C 80 FE 6E 2A FE 12 FE
-		5690 	F6 38 44 00 00 00 00 00 00 44 44 28 28 10 10 28
-		56A0 	28 44 44 00 00 01 FF 3D 83 19 87 01 8F 19 9F 3D
-		56B0 	BF 7F FF FF FF B9 C7 B9 C7 B9 C7 B9 C7 B9 C7 B9
-		56C0 	C7 B9 C7 B9 C7 FF FF 00 FF FF 00 FF 00 FF 00 00
-		56D0 	FF 00 FF FF FF 00 00 00 00 3C 3C 00 00 3C 3C 00
-		56E0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 30
-		56F0 	30 30 30 00 00 00 00 38 38 65 65 31 31 19 19 4D
-		5700 	4D 38 38 00 00 00 00 E3 E3 96 96 86 86 86 86 96
-		5710 	96 E3 E3 00 00 00 00 9E 9E 59 59 59 59 5E 5E 5B
-		5720 	5B 9B 9B 00 00 00 00 7C 7C 60 60 78 78 60 60 60
-		5730 	60 7C 7C 00 00 3E 3E 53 41 F3 81 9E 8E 74 7C 04
-		5740 	14 02 12 04 0C 7F 7F C0 FF A9 E0 AF D0 B7 C8 BC
-		5750 	C7 BA C7 B9 C7 FE FE 03 FF 95 07 F1 0F E9 17 59
-		5760 	A7 79 C7 B9 C7 7E 66 C3 81 FF 81 7E 7E 00 08 00
-		5770 	6B 00 7F 00 1C 00 00 3B 3B 6C 6C 30 30 18 18 6C
-		5780 	6C 38 38 00 00 00 00 F3 F3 C7 C7 CC CC CF CF CC
-		5790 	CC CC CC 00 00 00 00 0F 0F 99 99 D8 D8 DB DB D9
-		57A0 	D9 CF CF 00 00 00 00 3E 3E B0 B0 3C 3C B0 B0 B0
-		57B0 	B0 BE BE 00 00 00 00 79 79 CD CD 71 71 19 19 CD
-		57C0 	CD 79 79 00 00 00 00 F3 F3 9B 9B 9B 9B F3 F3 83
-		57D0 	83 83 83 00 00 00 00 F3 F3 06 06 E6 E6 06 06 06
-		57E0 	06 F3 F3 00 00 00 00 CF CF 66 66 06 06 06 06 66
-		57F0 	66 CF CF 00 00 00 00 C0 C0 C0 C0 C0 C0 C0 C0 C0
-		5800 	C0 FC FC 00 00 10 08 38 04 FE 01 7C 2A 3C 28 7C
-		5810 	02 C6 39 82 41 00 00 00 00 00 00 00 00 00 00 00
-		5820 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5830 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5840 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5850 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5860 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5870 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5880 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5890 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		58A0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		58B0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		58C0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		58D0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		58E0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		58F0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5900 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5910 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5920 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5930 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5940 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5950 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5960 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5970 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5980 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5990 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		59A0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		59B0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		59C0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		59D0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		59E0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		59F0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5A00 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5A10 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5A20 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5A30 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5A40 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5A50 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5A60 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5A70 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5A80 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5A90 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5AA0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5AB0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5AC0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5AD0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5AE0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5AF0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5B00 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5B10 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5B20 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5B30 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5B40 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5B50 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5B60 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		5B70 	00 00 00 00 00 7F 7F 40 40 60 40 7F 4F 7F 4F 7F
-		5B80 	4F 7F 4F 7F 4F E0 E0 18 18 04 04 E2 E2 F6 F2 FF
-		5B90 	F9 FF F9 FF F9 7F 4F 7F 4F 7F 4F 7F 4F 7F 4F 7F
-		5BA0 	4F 7F 4F 7F 4F 7F 79 7F 79 7F 79 7F 79 7F 79 7F
-		5BB0 	79 7F 79 7F 79 7F 5F 7F 5F 7F 4F 3F 2F 3F 27 1F
-		5BC0 	10 0F 0C 03 03 FF FD FF FD FF F9 FE FA FE F2 FC
-		5BD0 	04 F8 18 E0 E0 FF F9 FF F9 FF F9 FF F9 FF F9 FF
-		5BE0 	F9 FF F9 FF F9 FF FD FF FD FF FD FF FD FF FD FF
-		5BF0 	FD FF FD FF FD 7F 7F 41 41 63 41 7F 5D 7F 5D 7F
-		5C00 	5D 7F 5D 7F 5D 7F 5D 7F 5D 7F 5D 7F 5D 7F 5D 7F
-		5C10 	5D 7F 5D 7F 5D 7F 5D 7E 5C 7C 5C 7F 5F 7F 5F 7F
-		5C20 	5F 7F 5F 7F 5F FF FF 01 01 03 01 FF F9 FF F9 FF
-		5C30 	F9 FF F9 FF F9 7F 5F 7F 5F 7F 5F 7F 5F 7F 5F 7F
-		5C40 	40 7F 40 7F 7F FF F9 FF F9 FF F9 FF F9 FF F9 FF
-		5C50 	01 FF 01 FF FF 03 03 0C 0C 10 10 23 23 37 27 7F
-		5C60 	4F 7F 4F 7F 4F 3F 27 3F 27 3F 27 3F 27 3F 27 3F
-		5C70 	21 3F 21 3F 3F 7F 4F 7F 4F 7F 4F 7F 4F 7F 4F 7F
-		5C80 	40 7F 40 7F 7F 7E 72 7E 72 7E 72 7E 72 7E 72 7E
-		5C90 	42 7E 42 7E 7E 7F 5D 7F 5D 7F 5D 7F 5D 7F 5D 7F
-		5CA0 	41 7F 41 7F 7F 7F 4F 7F 4F 7F 4F 7F 4F 7F 4F 7F
-		5CB0 	41 7F 41 7F 7F 7F 79 7F 79 7F 79 7F 79 7F 79 7F
-		5CC0 	41 7F 41 7F 7F FF FF 03 01 07 01 FF F9 FF F9 FF
-		5CD0 	F9 FF 01 FF FF 00 00 00 00 FF FF 03 01 07 01 FF
-		5CE0 	F9 FF F9 FF F9 FF 01 FF FF 00 00 00 00 00 00 00
-		5CF0 	00 00 00 00 00 C6 C6 E6 E6 E6 E6 D6 D6 CE CE CE
-		5D00 	CE C6 C6 00 00 C0 C0 C0 C0 1B 1B DD DD D9 D9 D9
-		5D10 	D9 D9 D9 00 00 30 30 78 78 33 33 B6 B6 B7 B7 B6
-		5D20 	B6 B3 B3 00 00 00 00 00 00 CD CD 6E 6E EC EC 0C
-		5D30 	0C EC EC 00 00 01 01 01 01 8F 8F D9 D9 D9 D9 D9
-		5D40 	D9 CF CF 00 00 80 80 80 80 9E 9E B3 B3 B3 B3 B3
-		5D50 	B3 9E 9E 00 00 38 38 44 44 BA BA A2 A2 BA BA 44
-		5D60 	44 38 38 00 00 18 18 18 18 18 18 10 10 10 10 00
-		5D70 	00 30 30 00 00 00 00 3C 3C FF FF C3 FF 80 FF 00
-		5D80 	FF 00 FF 00 FF 00 00 00 00 03 03 C3 C3 E6 E7 36
-		5D90 	F7 1C FF 0C FF 3C 3C FF FF C3 FF 00 FF 00 FF 00
-		5DA0 	FF 00 FF 01 FF 00 00 80 80 C0 C0 C0 C0 60 E0 7F
-		5DB0 	FF FF FF 80 FF 00 00 00 00 00 00 00 00 00 00 00
-		5DC0 	00 C0 C0 F0 F0 06 07 06 07 07 07 03 03 03 03 01
-		5DD0 	01 00 00 00 00 00 FF 00 FF 00 FF 00 FF 00 FF 82
-		5DE0 	FF E7 FF 7F 7F 06 FF 03 FF 01 FF 00 FF 00 FF 00
-		5DF0 	FF 00 FF C0 FF 03 FF 02 FF 06 FF 04 FF 00 FF 00
-		5E00 	FF 03 FF 3F FF 00 FF 00 FF 00 FF 00 FF 00 FF 80
-		5E10 	FF C0 FF C0 FF 38 F8 1C FC 0C FC 06 FE 06 FE 03
-		5E20 	FF 03 FF 03 FF 00 00 00 00 00 00 00 00 E0 E0 F0
-		5E30 	F0 B8 F8 18 F8 00 00 00 00 00 00 00 00 03 03 0F
-		5E40 	0F 1F 1C 3F 30 1F 1F 3F 3F 1E 1E 0C 0C EC EC FC
-		5E50 	FC FE 1E FF 07 F9 FF FF FF 3E 3E 78 78 F8 F8 70
-		5E60 	70 D0 D0 D0 D0 FF FF FF FF 3F 3F 0F 0F 37 37 7F
-		5E70 	7F 7F 7F 37 36 C0 FF E0 FF FC FF FF F7 FF F1 FF
-		5E80 	C3 FF 03 FF 01 01 FF 00 FF 00 FF 81 FF F1 FF FF
-		5E90 	FF FF FF FF FF 18 F8 18 F8 B0 F0 F0 F0 E0 E0 80
-		5EA0 	80 C0 C0 C0 C0 7F 60 7F 60 FF C0 FF C0 FF C0 FF
-		5EB0 	C0 7F 60 7F 60 F0 F0 F0 30 F8 18 FC 0C FE 06 FF
-		5EC0 	01 FF 00 FF 00 E3 E2 F7 F6 FF FE FF FC 3F 3C FF
-		5ED0 	F0 FF 00 FF 00 FF FF FF FF FF 7F FF 3F FF 1F FF
-		5EE0 	1E FF 3E FF 3E F0 F0 FC FC FE 8E FE 02 FF 03 FF
-		5EF0 	03 FF 03 FF 03 3F 30 1F 1C 0F 0E 1F 1F 1F 1F 1F
-		5F00 	1F 0F 0F 01 01 FF 00 FF 00 FF 00 FF E0 FF FF FF
-		5F10 	FF FF FF FF FF FF 03 FF 07 FF 0F FF FF FF FF FF
-		5F20 	FF FD FD FC FC FF 80 FF E0 FF F0 FF F7 FC FC E0
-		5F30 	E0 80 80 10 10 FF 1E F3 73 C0 C0 80 80 04 04 04
-		5F40 	04 9F 9F 84 84 FF 1E FF 8C FF E4 3F 20 3F 30 1F
-		5F50 	13 1F 13 3F 33 FF 03 FE 06 FE 06 FE 0E FC 7C F0
-		5F60 	F0 00 00 00 00 FC FC 70 70 38 38 1E 1E 07 07 03
-		5F70 	03 00 00 00 00 F8 F8 02 02 07 07 02 02 80 80 F0
-		5F80 	F0 FF FF 3F 3F 13 13 38 38 10 10 10 10 00 00 00
-		5F90 	00 FF FF FF FF E4 E4 80 80 80 80 00 00 03 03 1F
-		5FA0 	1F FE FE F0 F0 3E 26 7E 6E 7C 5C F8 F8 E0 E0 80
-		5FB0 	80 00 00 00 00 00 00 00 40 39 40 3D 41 0E 70 06
-		5FC0 	38 10 1E 03 03 00 02 9C 82 3C 82 70 0E 60 1C 08
-		5FD0 	78 C0 C0 00 00 00 02 9C 82 3C 82 71 0F 63 1F 0B
-		5FE0 	7B C7 C7 06 07 00 00 03 03 0E 0E 18 18 30 30 60
-		5FF0 	60 C0 C0 80 80 F8 F8 9C 94 3F 27 7C 5C F0 B0 E0
-		6000 	E6 80 87 C0 C7 0F 0F F8 F8 80 86 00 06 00 30 00
-		6010 	36 00 36 00 B6 F0 F0 00 01 00 03 00 D9 00 ED 00
-		6020 	CD 00 CD 00 CD 00 00 00 80 00 C0 00 9E 00 B3 00
-		6030 	BF 00 B0 00 9F 0F 0F 00 00 00 00 00 60 00 7C 00
-		6040 	66 00 66 00 66 F0 F0 1F 1F 01 01 00 0C 00 0C 00
-		6050 	7C 00 CC 00 CC 1F 1F 39 29 FC E4 3E 3A 0F 0D 07
-		6060 	07 01 01 03 E3 00 00 C0 C0 70 70 18 18 0C 0C 06
-		6070 	06 03 03 01 01 C0 C0 60 60 30 30 18 18 0C 0C 06
-		6080 	06 03 03 01 01 40 46 60 66 20 26 30 36 70 70 D8
-		6090 	D8 8D 8D 07 07 00 F6 00 76 00 30 01 01 0F 0F 78
-		60A0 	78 C0 C0 00 00 00 C0 00 00 0F 0F F8 F8 00 00 00
-		60B0 	00 00 00 00 00 00 00 00 00 FF FF 00 00 00 00 00
-		60C0 	00 00 00 00 00 00 06 00 00 F0 F0 1F 1F 00 00 00
-		60D0 	00 00 00 00 00 00 CD 00 7D 00 01 80 80 F0 F0 1E
-		60E0 	1E 03 03 00 00 02 B2 06 B6 04 B4 0C EC 0E 0E 1B
-		60F0 	1B B1 B1 E0 E0 03 03 06 06 0C 0C 18 18 30 30 60
-		6100 	60 C0 C0 80 80 00 00 00 00 00 00 00 00 00 00 00
-		6110 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6120 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6130 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6140 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6150 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6160 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6170 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6180 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6190 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		61A0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		61B0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		61C0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		61D0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		61E0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		61F0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6200 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6210 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6220 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6230 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6240 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6250 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6260 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6270 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6280 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6290 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		62A0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		62B0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		62C0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		62D0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		62E0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		62F0 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6300 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6310 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6320 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6330 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6340 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6350 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6360 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-		6370 	00 00 00 00 00 3E 80 E0 26 3E 77 E0 24 3E FF E0
+		4B70 	00 08 08 26 00 
+
+Data:																	Data loaded into VRAM , starting at $8000, during loadGraphicsStart
+		4B75	68 7F A8 A8 FF E8 E8 FF 7F 7F 00 00 00 00 00 00 		
+		4B85 	00 FF 00 00 FF 00 00 FF FF FF 00 00 00 00 00 00 
+		4B95 	6F 7F AF AF F8 E8 E8 FF 7F 7F 00 00 00 00 00 00 
+		4BA5 	FF FF FF FF 00 00 00 FF FF FF 00 00 00 00 00 00 
+		4BB5 	3C FF 3C 3C 81 00 00 FF FF FF 00 00 00 00 00 00 
+		4BC5 	60 60 B0 B0 F0 F0 60 60 00 00 00 00 00 00 00 00 
+		4BD5 	00 00 04 07 10 1F 06 02 1F 01 0F 0F 07 00 01 03 
+		4BE5 	00 00 00 E0 00 F0 F0 50 F8 58 F0 30 C0 00 00 E0 
+		4BF5 	03 06 0B 06 0D 0D 1F 1F 0F 0F 06 3E 00 06 00 00 
+		4C05 	80 70 80 70 10 F0 F0 F0 F8 F8 38 3C 00 18 00 30 
+		4C15 	02 03 08 0F 03 01 0F 00 07 07 03 00 01 01 02 03 
+		4C25 	00 F0 00 F8 78 28 FC AC F8 98 E0 00 A0 70 40 F8 
+		4C35 	0E 03 0F 03 03 07 03 03 01 01 00 03 00 00 00 00 
+		4C45 	40 F8 B0 88 F8 C8 F8 F8 F8 F8 70 F0 30 38 00 70 
+		4C55 	00 00 04 07 10 1F 06 02 1F 01 0F 0F 07 00 00 03 
+		4C65 	00 00 00 E0 00 F0 F0 50 F8 58 F0 30 C0 00 80 F0 
+		4C75 	01 07 09 07 0E 06 07 07 07 07 03 03 01 01 00 03 
+		4C85 	60 98 60 98 C0 F0 F8 FC F8 FC F0 F8 C0 C8 00 C0 
+		4C95 	00 00 04 07 10 1F 06 02 1F 01 0F 0F 07 00 03 02 
+		4CA5 	00 00 00 E0 00 F0 F0 50 F8 58 F0 30 C0 00 C0 60 
+		4CB5 	04 0F 04 1F 3B 0B 3F 0F 0F 0F 1F 1F 1C 1C 00 3C 
+		4CC5 	80 F8 80 FC 7C 70 FC F0 F0 F0 F8 F8 38 38 00 3C 
+		4CD5 	04 07 10 1F 06 02 1F 01 0F 0F 07 00 05 07 09 0F 
+		4CE5 	00 E0 00 F0 F0 50 F8 58 F0 30 80 FC 10 FE 0C F2 
+		4CF5 	0E 4E 3F 7F 3F 7F 07 27 01 01 00 00 00 00 00 00 
+		4D05 	FC F0 F0 F0 F0 F0 E0 E0 F0 F8 F0 F8 00 10 00 10 
+		4D15 	04 07 10 1C 06 02 1C 00 0F 0F 07 00 05 07 09 0F 
+		4D25 	00 00 00 00 00 00 06 01 18 00 16 20 28 34 17 1E 
+		4D35 	00 00 06 09 10 24 00 40 00 80 48 80 A4 C8 5D 66 
+		4D45 	3F 3B 05 04 02 02 02 02 00 02 02 00 06 07 0A 51 
+		4D55 	01 02 00 08 00 00 04 08 01 06 00 01 00 00 00 00 
+		4D65 	00 01 00 00 00 00 00 01 00 00 00 01 00 02 08 B0 
+		4D75 	06 07 0A 0A 0F 0E 0E 0F 07 07 00 00 00 00 00 00 
+		4D85 	F9 FF FF FF 3F 3E 7F 78 FF F8 7F 70 DF D0 DF D0 
+		4D95 	FF FF FF FF FF 3F FF 0F FF 07 FF 03 FF 03 FF 02 
+		4DA5 	FF FF F0 30 F8 18 FC 0C FE 06 FF 01 FF 00 FF 00 
+		4DB5 	FF FE F7 F6 FF FE FF FC 3F 3C FF F0 FF 00 FF 00 
+		4DC5 	FF F0 FF 30 FF 18 FF 0C FF 06 FF 01 FF 00 FF 00 
+		4DD5 	FF 02 FF 02 FF 02 FF 02 FF 06 FF FC FF 00 FF 00 
+		4DE5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4DF5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4E05 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4E15 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4E25 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4E35 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4E45 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4E55 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4E65 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4E75 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4E85 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4E95 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4EA5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4EB5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4EC5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4ED5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4EE5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4EF5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4F05 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4F15 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4F25 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4F35 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4F45 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4F55 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4F65 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4F75 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4F85 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4F95 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4FA5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4FB5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4FC5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4FD5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4FE5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		4FF5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5005 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5015 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5025 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5035 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5045 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5055 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5065 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5075 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5085 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5095 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		50A5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		50B5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		50C5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		50D5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		50E5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		50F5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5105 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5115 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5125 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5135 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5145 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5155 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5165 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5175 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5185 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5195 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		51A5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		51B5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		51C5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		51D5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		51E5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		51F5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5205 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5215 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5225 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5235 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5245 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5255 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5265 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5275 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5285 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5295 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		52A5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		52B5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		52C5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		52D5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		52E5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		52F5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5305 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5315 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5325 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5335 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5345 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5355 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5365 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 		End of Data
+
+Data:																	Data loaded into VRAM , starting at $8800, during loadGraphicsStart
+		5375	00 00 3C 3C 66 66 66 66 66 66 66 66 3C 3C 00 00 
+		5385 	00 00 18 18 38 38 18 18 18 18 18 18 3C 3C 00 00 
+		5395 	00 00 3C 3C 66 66 0C 0C 38 38 60 60 7E 7E 00 00 
+		53A5 	00 00 7E 7E 08 08 3C 3C 06 06 66 66 3C 3C 00 00 
+		53B5 	00 00 1C 1C 2C 2C 4C 4C 7E 7E 0C 0C 0C 0C 00 00 
+		53C5 	00 00 7C 7C 40 40 7C 7C 06 06 66 66 3C 3C 00 00 
+		53D5 	00 00 3C 3C 60 60 7C 7C 66 66 66 66 3C 3C 00 00 
+		53E5 	00 00 7E 7E 66 66 0C 0C 18 18 18 18 18 18 00 00 
+		53F5 	00 00 3C 3C 66 66 3C 3C 66 66 66 66 3C 3C 00 00 
+		5405 	00 00 3C 3C 66 66 66 66 3E 3E 06 06 3C 3C 00 00 
+		5415 	00 00 18 18 3C 3C 66 66 7E 7E 66 66 66 66 00 00 
+		5425 	00 00 7C 7C 66 66 7C 7C 66 66 66 66 7E 7E 00 00 
+		5435 	00 00 3C 3C 66 66 60 60 60 60 66 66 3C 3C 00 00 
+		5445 	00 00 7C 7C 66 66 66 66 66 66 66 66 7C 7C 00 00 
+		5455 	00 00 7E 7E 60 60 7C 7C 60 60 60 60 7E 7E 00 00 
+		5465 	00 00 7E 7E 60 60 7C 7C 60 60 60 60 60 60 00 00 
+		5475 	00 00 3C 3C 66 66 60 60 6E 6E 66 66 3E 3E 00 00 
+		5485 	00 00 66 66 66 66 7E 7E 66 66 66 66 66 66 00 00 
+		5495 	00 00 3C 3C 18 18 18 18 18 18 18 18 3C 3C 00 00 
+		54A5 	00 00 1E 1E 0C 0C 0C 0C 0C 0C 6C 6C 38 38 00 00 
+		54B5 	00 00 66 66 6C 6C 78 78 7C 7C 6E 6E 66 66 00 00 
+		54C5 	00 00 60 60 60 60 60 60 60 60 60 60 7E 7E 00 00 
+		54D5 	00 00 62 62 76 76 7E 7E 6A 6A 62 62 62 62 00 00 
+		54E5 	00 00 66 66 76 76 7E 7E 6E 6E 66 66 66 66 00 00 
+		54F5 	00 00 3C 3C 66 66 66 66 66 66 66 66 3C 3C 00 00 
+		5505 	00 00 7C 7C 66 66 66 66 7C 7C 60 60 60 60 00 00 
+		5515 	00 00 3C 3C 66 66 66 66 7E 7E 64 64 3A 3A 00 00 
+		5525 	00 00 7C 7C 66 66 66 66 7C 7C 66 66 66 66 00 00 
+		5535 	00 00 3C 3C 66 66 38 38 0C 0C 66 66 3C 3C 00 00 
+		5545 	00 00 7E 7E 18 18 18 18 18 18 18 18 18 18 00 00 
+		5555 	00 00 66 66 66 66 66 66 66 66 66 66 3C 3C 00 00 
+		5565 	00 00 62 62 62 62 62 62 62 62 34 34 18 18 00 00 
+		5575 	00 00 62 62 6A 6A 6A 6A 6A 6A 7E 7E 34 34 00 00 
+		5585 	00 00 62 62 74 74 38 38 1C 1C 2E 2E 46 46 00 00 
+		5595 	00 00 62 62 76 76 3C 3C 18 18 18 18 18 18 00 00 
+		55A5 	00 00 7E 7E 0C 0C 18 18 30 30 60 60 7E 7E 00 00 
+		55B5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		55C5 	FF 00 FF 00 FF 00 FF 00 FF 00 FF 00 FF 00 FF 00 
+		55D5 	00 FF 00 FF 00 FF 00 FF 00 FF 00 FF 00 FF 00 FF 
+		55E5 	FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+		55F5 	FF 01 81 01 81 01 FF FF FF 01 81 01 81 01 FF FF 
+		5605 	FF 01 FF 01 FF 01 FF FF FF 01 FF 01 FF 01 FF FF 
+		5615 	01 FF 01 FF 01 FF FF FF 01 FF 01 FF 01 FF FF FF 
+		5625 	FF 01 81 01 81 01 FF FF 00 00 00 00 00 00 00 00 
+		5635 	FF 01 FF 01 FF 01 FF FF 00 00 00 00 00 00 00 00 
+		5645 	01 FF 01 FF 01 FF FF FF 00 00 00 00 00 00 00 00 
+		5655 	00 00 00 00 00 00 00 00 FF 01 81 01 81 01 FF FF 
+		5665 	00 00 00 00 00 00 00 00 FF 01 FF 01 FF 01 FF FF 
+		5675 	00 00 00 00 00 00 00 00 01 FF 01 FF 01 FF FF FF 
+		5685 	00 00 20 3C 80 FE 6E 2A FE 12 FE F6 38 44 00 00 
+		5695 	00 00 00 00 44 44 28 28 10 10 28 28 44 44 00 00 
+		56A5 	01 FF 3D 83 19 87 01 8F 19 9F 3D BF 7F FF FF FF 
+		56B5 	B9 C7 B9 C7 B9 C7 B9 C7 B9 C7 B9 C7 B9 C7 B9 C7 
+		56C5 	FF FF 00 FF FF 00 FF 00 FF 00 00 FF 00 FF FF FF 
+		56D5 	00 00 00 00 3C 3C 00 00 3C 3C 00 00 00 00 00 00 
+		56E5 	00 00 00 00 00 00 00 00 00 00 30 30 30 30 00 00 
+		56F5 	00 00 38 38 65 65 31 31 19 19 4D 4D 38 38 00 00 
+		5705 	00 00 E3 E3 96 96 86 86 86 86 96 96 E3 E3 00 00 
+		5715 	00 00 9E 9E 59 59 59 59 5E 5E 5B 5B 9B 9B 00 00 
+		5725 	00 00 7C 7C 60 60 78 78 60 60 60 60 7C 7C 00 00 
+		5735 	3E 3E 53 41 F3 81 9E 8E 74 7C 04 14 02 12 04 0C 
+		5745 	7F 7F C0 FF A9 E0 AF D0 B7 C8 BC C7 BA C7 B9 C7 
+		5755 	FE FE 03 FF 95 07 F1 0F E9 17 59 A7 79 C7 B9 C7 
+		5765 	7E 66 C3 81 FF 81 7E 7E 00 08 00 6B 00 7F 00 1C 
+		5775 	00 00 3B 3B 6C 6C 30 30 18 18 6C 6C 38 38 00 00 
+		5785 	00 00 F3 F3 C7 C7 CC CC CF CF CC CC CC CC 00 00 
+		5795 	00 00 0F 0F 99 99 D8 D8 DB DB D9 D9 CF CF 00 00 
+		57A5 	00 00 3E 3E B0 B0 3C 3C B0 B0 B0 B0 BE BE 00 00 
+		57B5 	00 00 79 79 CD CD 71 71 19 19 CD CD 79 79 00 00 
+		57C5 	00 00 F3 F3 9B 9B 9B 9B F3 F3 83 83 83 83 00 00 
+		57D5 	00 00 F3 F3 06 06 E6 E6 06 06 06 06 F3 F3 00 00 
+		57E5 	00 00 CF CF 66 66 06 06 06 06 66 66 CF CF 00 00 
+		57F5 	00 00 C0 C0 C0 C0 C0 C0 C0 C0 C0 C0 FC FC 00 00 
+		5805 	10 08 38 04 FE 01 7C 2A 3C 28 7C 02 C6 39 82 41 
+		5815 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5825 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5835 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5845 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5855 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5865 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5875 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5885 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5895 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		58A5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		58B5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		58C5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		58D5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		58E5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		58F5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5905 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5915 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5925 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5935 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5945 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5955 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5965 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5975 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5985 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5995 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		59A5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		59B5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		59C5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		59D5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		59E5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		59F5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5A05 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5A15 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5A25 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5A35 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5A45 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5A55 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5A65 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5A75 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5A85 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5A95 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5AA5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5AB5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5AC5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5AD5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5AE5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5AF5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5B05 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5B15 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5B25 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5B35 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5B45 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5B55 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		5B65 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 			End of Data
+	
+
+Data:																		Data loaded into VRAM , starting at $9000, during loadGraphicsStart		
+		5B75	7F 7F 40 40 60 40 7F 4F 7F 4F 7F 4F 7F 4F 7F 4F 
+		5B85 	E0 E0 18 18 04 04 E2 E2 F6 F2 FF F9 FF F9 FF F9 
+		5B95 	7F 4F 7F 4F 7F 4F 7F 4F 7F 4F 7F 4F 7F 4F 7F 4F 
+		5BA5 	7F 79 7F 79 7F 79 7F 79 7F 79 7F 79 7F 79 7F 79 
+		5BB5 	7F 5F 7F 5F 7F 4F 3F 2F 3F 27 1F 10 0F 0C 03 03 
+		5BC5 	FF FD FF FD FF F9 FE FA FE F2 FC 04 F8 18 E0 E0 
+		5BD5 	FF F9 FF F9 FF F9 FF F9 FF F9 FF F9 FF F9 FF F9 
+		5BE5 	FF FD FF FD FF FD FF FD FF FD FF FD FF FD FF FD 
+		5BF5 	7F 7F 41 41 63 41 7F 5D 7F 5D 7F 5D 7F 5D 7F 5D 
+		5C05 	7F 5D 7F 5D 7F 5D 7F 5D 7F 5D 7F 5D 7F 5D 7F 5D 
+		5C15 	7F 5D 7E 5C 7C 5C 7F 5F 7F 5F 7F 5F 7F 5F 7F 5F 
+		5C25 	FF FF 01 01 03 01 FF F9 FF F9 FF F9 FF F9 FF F9 
+		5C35 	7F 5F 7F 5F 7F 5F 7F 5F 7F 5F 7F 40 7F 40 7F 7F 
+		5C45 	FF F9 FF F9 FF F9 FF F9 FF F9 FF 01 FF 01 FF FF 
+		5C55 	03 03 0C 0C 10 10 23 23 37 27 7F 4F 7F 4F 7F 4F 
+		5C65 	3F 27 3F 27 3F 27 3F 27 3F 27 3F 21 3F 21 3F 3F 
+		5C75 	7F 4F 7F 4F 7F 4F 7F 4F 7F 4F 7F 40 7F 40 7F 7F 
+		5C85 	7E 72 7E 72 7E 72 7E 72 7E 72 7E 42 7E 42 7E 7E 
+		5C95 	7F 5D 7F 5D 7F 5D 7F 5D 7F 5D 7F 41 7F 41 7F 7F 
+		5CA5 	7F 4F 7F 4F 7F 4F 7F 4F 7F 4F 7F 41 7F 41 7F 7F 
+		5CB5 	7F 79 7F 79 7F 79 7F 79 7F 79 7F 41 7F 41 7F 7F 
+		5CC5 	FF FF 03 01 07 01 FF F9 FF F9 FF F9 FF 01 FF FF 
+		5CD5 	00 00 00 00 FF FF 03 01 07 01 FF F9 FF F9 FF F9 
+		5CE5 	FF 01 FF FF 00 00 00 00 00 00 00 00 00 00 00 00 
+		5CF5 	C6 C6 E6 E6 E6 E6 D6 D6 CE CE CE CE C6 C6 00 00 
+		5D05 	C0 C0 C0 C0 1B 1B DD DD D9 D9 D9 D9 D9 D9 00 00 
+		5D15 	30 30 78 78 33 33 B6 B6 B7 B7 B6 B6 B3 B3 00 00 
+		5D25 	00 00 00 00 CD CD 6E 6E EC EC 0C 0C EC EC 00 00 
+		5D35 	01 01 01 01 8F 8F D9 D9 D9 D9 D9 D9 CF CF 00 00 
+		5D45 	80 80 80 80 9E 9E B3 B3 B3 B3 B3 B3 9E 9E 00 00 
+		5D55 	38 38 44 44 BA BA A2 A2 BA BA 44 44 38 38 00 00 
+		5D65 	18 18 18 18 18 18 10 10 10 10 00 00 30 30 00 00 
+		5D75 	00 00 3C 3C FF FF C3 FF 80 FF 00 FF 00 FF 00 FF 
+		5D85 	00 00 00 00 03 03 C3 C3 E6 E7 36 F7 1C FF 0C FF 
+		5D95 	3C 3C FF FF C3 FF 00 FF 00 FF 00 FF 00 FF 01 FF 
+		5DA5 	00 00 80 80 C0 C0 C0 C0 60 E0 7F FF FF FF 80 FF 
+		5DB5 	00 00 00 00 00 00 00 00 00 00 00 00 C0 C0 F0 F0 
+		5DC5 	06 07 06 07 07 07 03 03 03 03 01 01 00 00 00 00 
+		5DD5 	00 FF 00 FF 00 FF 00 FF 00 FF 82 FF E7 FF 7F 7F 
+		5DE5 	06 FF 03 FF 01 FF 00 FF 00 FF 00 FF 00 FF C0 FF 
+		5DF5 	03 FF 02 FF 06 FF 04 FF 00 FF 00 FF 03 FF 3F FF 
+		5E05 	00 FF 00 FF 00 FF 00 FF 00 FF 80 FF C0 FF C0 FF 
+		5E15 	38 F8 1C FC 0C FC 06 FE 06 FE 03 FF 03 FF 03 FF 
+		5E25 	00 00 00 00 00 00 00 00 E0 E0 F0 F0 B8 F8 18 F8 
+		5E35 	00 00 00 00 00 00 00 00 03 03 0F 0F 1F 1C 3F 30 
+		5E45 	1F 1F 3F 3F 1E 1E 0C 0C EC EC FC FC FE 1E FF 07 
+		5E55 	F9 FF FF FF 3E 3E 78 78 F8 F8 70 70 D0 D0 D0 D0 
+		5E65 	FF FF FF FF 3F 3F 0F 0F 37 37 7F 7F 7F 7F 37 36 
+		5E75 	C0 FF E0 FF FC FF FF F7 FF F1 FF C3 FF 03 FF 01 
+		5E85 	01 FF 00 FF 00 FF 81 FF F1 FF FF FF FF FF FF FF 
+		5E95 	18 F8 18 F8 B0 F0 F0 F0 E0 E0 80 80 C0 C0 C0 C0 
+		5EA5 	7F 60 7F 60 FF C0 FF C0 FF C0 FF C0 7F 60 7F 60 
+		5EB5 	F0 F0 F0 30 F8 18 FC 0C FE 06 FF 01 FF 00 FF 00 
+		5EC5 	E3 E2 F7 F6 FF FE FF FC 3F 3C FF F0 FF 00 FF 00 
+		5ED5 	FF FF FF FF FF 7F FF 3F FF 1F FF 1E FF 3E FF 3E 
+		5EE5 	F0 F0 FC FC FE 8E FE 02 FF 03 FF 03 FF 03 FF 03 
+		5EF5 	3F 30 1F 1C 0F 0E 1F 1F 1F 1F 1F 1F 0F 0F 01 01 
+		5F05 	FF 00 FF 00 FF 00 FF E0 FF FF FF FF FF FF FF FF 
+		5F15 	FF 03 FF 07 FF 0F FF FF FF FF FF FF FD FD FC FC 
+		5F25 	FF 80 FF E0 FF F0 FF F7 FC FC E0 E0 80 80 10 10 
+		5F35 	FF 1E F3 73 C0 C0 80 80 04 04 04 04 9F 9F 84 84 
+		5F45 	FF 1E FF 8C FF E4 3F 20 3F 30 1F 13 1F 13 3F 33 
+		5F55 	FF 03 FE 06 FE 06 FE 0E FC 7C F0 F0 00 00 00 00 
+		5F65 	FC FC 70 70 38 38 1E 1E 07 07 03 03 00 00 00 00 
+		5F75 	F8 F8 02 02 07 07 02 02 80 80 F0 F0 FF FF 3F 3F 
+		5F85 	13 13 38 38 10 10 10 10 00 00 00 00 FF FF FF FF 
+		5F95 	E4 E4 80 80 80 80 00 00 03 03 1F 1F FE FE F0 F0 
+		5FA5 	3E 26 7E 6E 7C 5C F8 F8 E0 E0 80 80 00 00 00 00 
+		5FB5 	00 00 00 40 39 40 3D 41 0E 70 06 38 10 1E 03 03 
+		5FC5 	00 02 9C 82 3C 82 70 0E 60 1C 08 78 C0 C0 00 00 
+		5FD5 	00 02 9C 82 3C 82 71 0F 63 1F 0B 7B C7 C7 06 07 
+		5FE5 	00 00 03 03 0E 0E 18 18 30 30 60 60 C0 C0 80 80 
+		5FF5 	F8 F8 9C 94 3F 27 7C 5C F0 B0 E0 E6 80 87 C0 C7 
+		6005 	0F 0F F8 F8 80 86 00 06 00 30 00 36 00 36 00 B6 
+		6015 	F0 F0 00 01 00 03 00 D9 00 ED 00 CD 00 CD 00 CD 
+		6025 	00 00 00 80 00 C0 00 9E 00 B3 00 BF 00 B0 00 9F 
+		6035 	0F 0F 00 00 00 00 00 60 00 7C 00 66 00 66 00 66 
+		6045 	F0 F0 1F 1F 01 01 00 0C 00 0C 00 7C 00 CC 00 CC 
+		6055 	1F 1F 39 29 FC E4 3E 3A 0F 0D 07 07 01 01 03 E3 
+		6065 	00 00 C0 C0 70 70 18 18 0C 0C 06 06 03 03 01 01 
+		6075 	C0 C0 60 60 30 30 18 18 0C 0C 06 06 03 03 01 01 
+		6085 	40 46 60 66 20 26 30 36 70 70 D8 D8 8D 8D 07 07 
+		6095 	00 F6 00 76 00 30 01 01 0F 0F 78 78 C0 C0 00 00 
+		60A5 	00 C0 00 00 0F 0F F8 F8 00 00 00 00 00 00 00 00 
+		60B5 	00 00 00 00 FF FF 00 00 00 00 00 00 00 00 00 00 
+		60C5 	00 06 00 00 F0 F0 1F 1F 00 00 00 00 00 00 00 00 
+		60D5 	00 CD 00 7D 00 01 80 80 F0 F0 1E 1E 03 03 00 00 
+		60E5 	02 B2 06 B6 04 B4 0C EC 0E 0E 1B 1B B1 B1 E0 E0 
+		60F5 	03 03 06 06 0C 0C 18 18 30 30 60 60 C0 C0 80 80 
+		6105 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6115 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6125 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6135 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6145 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6155 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6165 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6175 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6185 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6195 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		61A5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		61B5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		61C5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		61D5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		61E5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		61F5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6205 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6215 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6225 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6235 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6245 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6255 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6265 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6275 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6285 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6295 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		62A5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		62B5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		62C5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		62D5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		62E5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		62F5 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6305 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6315 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6325 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6335 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6345 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6355 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+		6365 	00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 		End of Data 
+ 															
+		6375	3E 80 E0 26 3E 77 E0 24 3E FF E0
 		6380 	25 C9 AF EA D8 DF C9 3E 01 EA D8 DF C9 F0 B1 3D
 		6390 	47 1E 06 CD 54 04 21 87 1B 09 06 00 0E 05 09 7E
 		63A0 	FE 00 28 12 FE 01 28 0A FE 02 28 12 18 14 3E 01
